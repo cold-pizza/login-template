@@ -13,10 +13,17 @@ const SignUp = () => {
         introduce: "",
     });
     const { email, name, password, introduce } = signup;
+
     return (
         <div className="signup-container">
             <form className="signup-form">
-                <input name="name" type="text" placeholder="이름" required />
+                <input
+                    name="name"
+                    onChange={(e) => onChange(e, signup, setSignup)}
+                    type="text"
+                    placeholder="이름"
+                    required
+                />
                 <input
                     name="email"
                     type="email"
@@ -37,7 +44,15 @@ const SignUp = () => {
                     placeholder="자기소개(선택)"
                 />
                 <button
-                    onClick={() => isSignup(email, name, password, introduce)}
+                    onClick={() => {
+                        isSignup(email, name, password, introduce);
+                        setSignup({
+                            email: "",
+                            name: "",
+                            password: "",
+                            introduce: "",
+                        });
+                    }}
                     type="button"
                 >
                     회원가입
